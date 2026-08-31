@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register | LifeFlow
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center"
+     style="min-height: 80vh;">
+
+    <div class="card-custom" style="width: 100%; max-width: 450px;">
+
+        <div class="text-center mb-4">
+
+            <h2 class="text-danger fw-bold">
+                🩸 Create Account
+            </h2>
+
+            <p class="text-muted">
+                Join LifeFlow and become a lifesaver
+            </p>
+
+        </div>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- Username -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Username
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       name="username"
+                       placeholder="Choose a username"
+                       required>
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Password
+                </label>
+
+                <input type="password"
+                       class="form-control"
+                       name="password"
+                       placeholder="Create a password"
+                       required>
+
+            </div>
+
+
+            <!-- Confirm Password -->
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Confirm Password
+                </label>
+
+                <input type="password"
+                       class="form-control"
+                       name="confirm_password"
+                       placeholder="Confirm your password"
+                       required>
+
+            </div>
+
+
+            <!-- Register Button -->
+
+            <button type="submit"
+                    class="btn btn-blood w-100">
+
+                🩸 Register
+
+            </button>
+
+        </form>
+
+
+        <div class="text-center mt-4">
+
+            <p class="mb-0">
+
+                Already have an account?
+
+                <a href="{% url 'login' %}"
+                   class="text-danger fw-bold">
+
+                    Login
+
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

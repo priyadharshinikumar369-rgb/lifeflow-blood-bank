@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard | LifeFlow
+{% endblock %}
+
+
+{% block extra_css %}
+
+<style>
+
+    .dashboard-header {
+        background: linear-gradient(135deg, #a80000, #e60000);
+        color: white;
+        padding: 35px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    }
+
+
+    .dashboard-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        height: 100%;
+        border: none;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: 0.3s;
+    }
+
+
+    .dashboard-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+
+    .dashboard-icon {
+        width: 70px;
+        height: 70px;
+        background: #ffe5e5;
+        color: #cc0000;
+        border-radius: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin: 0 auto 20px;
+
+        font-size: 30px;
+    }
+
+
+    .dashboard-number {
+        font-size: 40px;
+        font-weight: 700;
+        color: #b30000;
+    }
+
+
+    .dashboard-title {
+        color: #555;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+
+    .quick-action {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-container">
+
+
+    <!-- ================= DASHBOARD HEADER ================= -->
+
+    <div class="dashboard-header">
+
+        <h2 class="fw-bold mb-2">
+            📊 LifeFlow Dashboard
+        </h2>
+
+        <p class="mb-0">
+            Welcome, {{ user.username }}! Here is your Blood Bank overview.
+        </p>
+
+    </div>
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <div class="row g-4">
+
+
+        <!-- TOTAL DONORS -->
+
+        <div class="col-md-4">
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+                <div class="dashboard-number">
+
+                    {{ donors_count }}
+
+                </div>
+
+                <div class="dashboard-title">
+
+                    Total Donors
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BLOOD UNITS -->
+
+        <div class="col-md-4">
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+
+                    <i class="fa-solid fa-droplet"></i>
+
+                </div>
+
+                <div class="dashboard-number">
+
+                    {{ blood_units }}
+
+                </div>
+
+                <div class="dashboard-title">
+
+                    Available Blood Units
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BLOOD GROUPS -->
+
+        <div class="col-md-4">
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+
+                    <i class="fa-solid fa-heart-pulse"></i>
+
+                </div>
+
+                <div class="dashboard-number">
+
+                    {{ blood_groups }}
+
+                </div>
+
+                <div class="dashboard-title">
+
+                    Blood Groups Available
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= QUICK ACTIONS ================= -->
+
+    <div class="quick-action mt-5">
+
+        <h4 class="fw-bold text-danger mb-4">
+
+            ⚡ Quick Actions
+
+        </h4>
+
+
+        <div class="row g-3">
+
+
+            <div class="col-md-4">
+
+                <a href="{% url 'donor_add' %}"
+                   class="btn btn-blood w-100">
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    Add Donor
+
+                </a>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <a href="{% url 'inventory_add' %}"
+                   class="btn btn-blood w-100">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Blood Inventory
+
+                </a>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <a href="{% url 'donor_list' %}"
+                   class="btn btn-outline-danger w-100">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    View Donors
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

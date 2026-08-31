@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Blood Inventory | LifeFlow
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7 col-lg-6">
+            <div class="card-custom">
+
+                <div class="text-center mb-4">
+
+                    <i class="fa-solid fa-pen-to-square"
+                       style="font-size: 50px; color: #cc0000;">
+                    </i>
+
+                    <h2 class="fw-bold mt-3">
+                        Edit Blood Inventory
+                    </h2>
+
+                    <p class="text-muted">
+                        Update the available blood units.
+                    </p>
+
+                </div>
+
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+
+                    <!-- BLOOD GROUP -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Blood Group
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               value="{{ item.blood_group }}"
+                               disabled>
+
+                    </div>
+
+
+                    <!-- UNITS -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+                            Available Units
+                        </label>
+
+                        <input type="number"
+                               name="units"
+                               class="form-control"
+                               value="{{ item.units }}"
+                               min="0"
+                               required>
+
+                    </div>
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="d-flex gap-2">
+
+                        <a href="{% url 'inventory_list' %}"
+                           class="btn btn-secondary w-50">
+
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Cancel
+
+                        </a>
+
+
+                        <button type="submit"
+                                class="btn btn-blood w-50">
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Update Inventory
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

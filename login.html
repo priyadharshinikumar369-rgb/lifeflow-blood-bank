@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login | LifeFlow
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center"
+     style="min-height: 80vh;">
+
+    <div class="card-custom" style="width: 100%; max-width: 420px;">
+
+        <div class="text-center mb-4">
+            <h2 class="text-danger fw-bold">🩸 Welcome Back</h2>
+            <p class="text-muted">Login to your LifeFlow account</p>
+        </div>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- Username -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Username
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       name="username"
+                       placeholder="Enter your username"
+                       required>
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Password
+                </label>
+
+                <input type="password"
+                       class="form-control"
+                       name="password"
+                       placeholder="Enter your password"
+                       required>
+
+            </div>
+
+
+            <!-- Login Button -->
+
+            <button type="submit"
+                    class="btn btn-blood w-100">
+
+                🔐 Login
+
+            </button>
+
+        </form>
+
+
+        <div class="text-center mt-4">
+
+            <p class="mb-0">
+
+                Don't have an account?
+
+                <a href="{% url 'register' %}"
+                   class="text-danger fw-bold">
+
+                    Register
+
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

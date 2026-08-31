@@ -1,0 +1,769 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+LifeFlow | Smart Blood Bank Management System
+{% endblock %}
+
+
+{% block extra_css %}
+
+<style>
+
+    /* ================= HERO SECTION ================= */
+
+    .hero-section {
+        min-height: 650px;
+        background:
+            linear-gradient(
+                90deg,
+                rgba(105, 0, 0, 0.90),
+                rgba(180, 0, 0, 0.65)
+            ),
+            url("https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=1600&q=80");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        display: flex;
+        align-items: center;
+    }
+
+
+    .hero-overlay {
+        width: 100%;
+        min-height: 650px;
+        display: flex;
+        align-items: center;
+    }
+
+
+    .hero-content {
+        color: white;
+    }
+
+
+    .hero-content h5 {
+        color: #ffe0e0;
+        font-weight: 500;
+    }
+
+
+    .hero-content h1 {
+        color: white;
+        font-weight: 700;
+    }
+
+
+    .hero-content .highlight {
+        color: #ffcccc;
+    }
+
+
+    .hero-content p {
+        color: white;
+        max-width: 650px;
+    }
+
+
+    .hero-btn {
+        background: white;
+        color: #b30000;
+        border: none;
+        font-weight: 600;
+        padding: 12px 25px;
+        border-radius: 8px;
+    }
+
+
+    .hero-btn:hover {
+        background: #ffe6e6;
+        color: #8b0000;
+    }
+
+
+    /* ================= STATISTICS ================= */
+
+    .stat-card {
+        background: white;
+        border: none;
+        border-radius: 15px;
+        padding: 25px;
+        height: 100%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: 0.3s;
+    }
+
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+
+
+    /* ================= FEATURES ================= */
+
+    .feature-box {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        height: 100%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: 0.3s;
+    }
+
+
+    .feature-box:hover {
+        transform: translateY(-8px);
+    }
+
+
+    .feature-icon {
+        font-size: 45px;
+        color: #cc0000;
+    }
+
+
+    /* ================= BLOOD CARDS ================= */
+
+    .blood-card {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: 0.3s;
+    }
+
+
+    .blood-card:hover {
+        transform: translateY(-5px);
+    }
+
+
+    /* ================= PROCESS ================= */
+
+    .process-card {
+        background: white;
+        padding: 30px 20px;
+        border-radius: 15px;
+        height: 100%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+
+    .process-icon {
+        width: 70px;
+        height: 70px;
+        background: #ffe5e5;
+        color: #cc0000;
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 28px;
+        margin: 0 auto 20px;
+    }
+
+
+    /* ================= TESTIMONIAL ================= */
+
+    .testimonial-card {
+        background: white;
+        border: none;
+        border-radius: 15px;
+        padding: 25px;
+        height: 100%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+
+    .testimonial-card img {
+        object-fit: cover;
+    }
+
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 768px) {
+
+        .hero-section,
+        .hero-overlay {
+            min-height: 550px;
+        }
+
+        .hero-content h1 {
+            font-size: 42px;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- ================= HERO SECTION ================= -->
+
+<section class="hero-section">
+
+    <div class="hero-overlay">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-7 hero-content">
+
+                    <h5 class="mb-3">
+                        ❤️ Welcome to LifeFlow
+                    </h5>
+
+                    <h1 class="display-3">
+                        Donate Blood,
+                        <span class="highlight">Save Lives</span>
+                    </h1>
+
+                    <p class="lead mt-4">
+                        Join thousands of voluntary blood donors and help save lives.
+                        LifeFlow connects donors, patients and hospitals through one
+                        smart platform.
+                    </p>
+
+                    <div class="mt-5">
+
+                        <a href="{% url 'register' %}"
+                           class="btn hero-btn btn-lg me-3">
+                            🩸 Donate Blood
+                        </a>
+
+                        <a href="#blood-availability"
+                           class="btn btn-outline-light btn-lg">
+                            Request Blood
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="row text-center g-4">
+
+            <div class="col-md-3">
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-users fa-3x text-danger mb-3"></i>
+
+                    <h2 class="fw-bold">1,500+</h2>
+
+                    <p class="mb-0">Total Donors</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-droplet fa-3x text-danger mb-3"></i>
+
+                    <h2 class="fw-bold">850</h2>
+
+                    <p class="mb-0">Blood Units</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-hospital fa-3x text-danger mb-3"></i>
+
+                    <h2 class="fw-bold">45</h2>
+
+                    <p class="mb-0">Partner Hospitals</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-heart-circle-check fa-3x text-danger mb-3"></i>
+
+                    <h2 class="fw-bold">10,000+</h2>
+
+                    <p class="mb-0">Lives Saved</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WHY CHOOSE LIFEFLOW ================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold text-danger">
+                Why Choose LifeFlow?
+            </h2>
+
+            <p class="text-muted">
+                We make blood donation simple, secure, and accessible.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="feature-box text-center">
+
+                    <i class="fa-solid fa-shield-heart feature-icon"></i>
+
+                    <h4 class="mt-4">
+                        Safe Donation
+                    </h4>
+
+                    <p class="text-muted">
+                        Every donation follows strict medical safety standards
+                        to ensure the well-being of donors and recipients.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-4">
+
+                <div class="feature-box text-center">
+
+                    <i class="fa-solid fa-clock feature-icon"></i>
+
+                    <h4 class="mt-4">
+                        Fast Response
+                    </h4>
+
+                    <p class="text-muted">
+                        Emergency blood requests are processed quickly
+                        when every minute matters.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-4">
+
+                <div class="feature-box text-center">
+
+                    <i class="fa-solid fa-hospital-user feature-icon"></i>
+
+                    <h4 class="mt-4">
+                        Trusted Hospitals
+                    </h4>
+
+                    <p class="text-muted">
+                        We collaborate with hospitals and blood banks
+                        to provide reliable services.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BLOOD AVAILABILITY ================= -->
+
+<section id="blood-availability" class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold text-danger">
+                Blood Availability
+            </h2>
+
+            <p class="text-muted">
+                Available blood units in our inventory
+            </p>
+
+        </div>
+
+
+        <div class="row">
+
+            {% for item in inventory %}
+
+            <div class="col-md-3 col-6 text-center mb-4">
+
+                <div class="blood-card">
+
+                    <h2 class="text-danger fw-bold">
+                        {{ item.blood_group }}
+                    </h2>
+
+                    <p class="mb-0">
+                        {{ item.units_available }} Units
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12 text-center">
+
+                <p class="text-muted">
+                    No blood inventory available yet.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BLOOD DONATION PROCESS ================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold text-danger">
+                Blood Donation Process
+            </h2>
+
+            <p class="text-muted">
+                Donating blood is simple, safe, and takes only a few minutes.
+            </p>
+
+        </div>
+
+
+        <div class="row text-center g-4">
+
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="process-card">
+
+                    <div class="process-icon">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+
+                    <h4>Register</h4>
+
+                    <p>
+                        Create your donor profile and register with LifeFlow.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="process-card">
+
+                    <div class="process-icon">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+
+                    <h4>Health Check</h4>
+
+                    <p>
+                        A quick health screening ensures safe blood donation.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="process-card">
+
+                    <div class="process-icon">
+                        <i class="fa-solid fa-hand-holding-droplet"></i>
+                    </div>
+
+                    <h4>Donate Blood</h4>
+
+                    <p>
+                        The donation process is safe and comfortable.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="process-card">
+
+                    <div class="process-icon">
+                        <i class="fa-solid fa-heart-circle-check"></i>
+                    </div>
+
+                    <h4>Save Lives</h4>
+
+                    <p>
+                        Your blood donation can help save multiple lives.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BLOOD CAMP ================= -->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6 mb-4 mb-lg-0">
+
+                <img
+                    src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80"
+                    class="img-fluid rounded shadow"
+                    alt="Blood Donation Camp">
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <span class="badge bg-danger mb-3">
+                    Upcoming Event
+                </span>
+
+                <h2 class="fw-bold text-danger">
+                    LifeFlow Blood Donation Camp
+                </h2>
+
+                <p class="text-muted mt-3">
+
+                    Join our upcoming blood donation camp and become a lifesaver.
+                    Your single blood donation can help save lives.
+
+                </p>
+
+
+                <div class="mt-4">
+
+                    <p>
+                        <i class="fa-solid fa-calendar-days text-danger"></i>
+                        <strong>Date:</strong> 15 July 2026
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-clock text-danger"></i>
+                        <strong>Time:</strong> 9:00 AM – 4:00 PM
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-location-dot text-danger"></i>
+                        <strong>Venue:</strong> LifeFlow Central Blood Bank
+                    </p>
+
+                </div>
+
+
+                <a href="{% url 'register' %}"
+                   class="btn btn-danger btn-lg mt-3">
+
+                    Register for Camp
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HAPPY DONORS ================= -->
+
+<section class="container my-5">
+
+    <div class="text-center mb-5">
+
+        <h2 class="fw-bold text-danger">
+            💬 Happy Donors
+        </h2>
+
+        <p class="text-muted">
+            Stories from people who chose to save lives.
+        </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+
+        <div class="col-md-4">
+
+            <div class="testimonial-card text-center">
+
+                <img
+                    src="https://randomuser.me/api/portraits/men/32.jpg"
+                    class="rounded-circle mx-auto"
+                    width="100"
+                    height="100"
+                    alt="Donor">
+
+                <h5 class="mt-3">
+                    Rahul Kumar
+                </h5>
+
+                <p class="text-muted">
+                    Regular Blood Donor
+                </p>
+
+                <p>
+                    “Donating blood here was smooth and safe.
+                    Staff was very supportive.”
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="testimonial-card text-center">
+
+                <img
+                    src="https://randomuser.me/api/portraits/women/44.jpg"
+                    class="rounded-circle mx-auto"
+                    width="100"
+                    height="100"
+                    alt="Donor">
+
+                <h5 class="mt-3">
+                    Anita Sharma
+                </h5>
+
+                <p class="text-muted">
+                    Volunteer Donor
+                </p>
+
+                <p>
+                    “Great experience! Clean environment and fast process.”
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="testimonial-card text-center">
+
+                <img
+                    src="https://randomuser.me/api/portraits/men/75.jpg"
+                    class="rounded-circle mx-auto"
+                    width="100"
+                    height="100"
+                    alt="Donor">
+
+                <h5 class="mt-3">
+                    Vikram Singh
+                </h5>
+
+                <p class="text-muted">
+                    First-time Donor
+                </p>
+
+                <p>
+                    “I was nervous, but the staff guided me well.
+                    Highly recommended!”
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

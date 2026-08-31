@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Blood Inventory | LifeFlow
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">
+                🩸 Blood Inventory
+            </h2>
+
+            <p class="text-muted">
+                Available blood units in LifeFlow.
+            </p>
+
+        </div>
+
+        {% if user.is_staff %}
+
+        <a href="{% url 'inventory_add' %}"
+           class="btn btn-blood">
+
+            <i class="fa-solid fa-plus"></i>
+            Add Inventory
+
+        </a>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="card-custom">
+
+        {% if inventory %}
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>Blood Group</th>
+
+                        <th>Available Units</th>
+
+                        {% if user.is_staff %}
+                        <th class="text-center">
+                            Actions
+                        </th>
+                        {% endif %}
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for item in inventory %}
+
+                    <tr>
+
+                        <td>
+                            {{ forloop.counter }}
+                        </td>
+
+
+                        <td>
+
+                            <span class="badge bg-danger fs-6">
+
+                                {{ item.blood_group }}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <strong>
+                                {{ item.units }} Units
+                            </strong>
+
+                        </td>
+
+
+                        {% if user.is_staff %}
+
+                        <td class="text-center">
+
+
+                            <!-- EDIT -->
+
+                            <a href="{% url 'inventory_edit' item.id %}"
+                               class="btn btn-warning btn-sm">
+
+                                <i class="fa-solid fa-pen"></i>
+                                Edit
+
+                            </a>
+
+
+                            <!-- DELETE -->
+
+                            <form method="POST"
+                                  action="{% url 'inventory_delete' item.id %}"
+                                  class="d-inline"
+                                  onsubmit="return confirm('Are you sure you want to remove this blood group?');">
+
+                                {% csrf_token %}
+
+                                <button type="submit"
+                                        class="btn btn-danger btn-sm">
+
+                                    <i class="fa-solid fa-trash"></i>
+                                    Remove
+
+                                </button>
+
+                            </form>
+
+
+                        </td>
+
+                        {% endif %}
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+        <div class="text-center py-5">
+
+            <i class="fa-solid fa-droplet"
+               style="font-size: 55px; color: #cc0000;">
+            </i>
+
+            <h4 class="mt-3">
+                No Blood Inventory Available
+            </h4>
+
+            <p class="text-muted">
+                Add blood groups and available units.
+            </p>
+
+
+            {% if user.is_staff %}
+
+            <a href="{% url 'inventory_add' %}"
+               class="btn btn-blood">
+
+                <i class="fa-solid fa-plus"></i>
+                Add Inventory
+
+            </a>
+
+            {% endif %}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

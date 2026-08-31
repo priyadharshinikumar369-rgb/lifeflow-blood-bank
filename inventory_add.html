@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add Blood Inventory | LifeFlow
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7 col-lg-6">
+
+            <div class="card-custom">
+
+                <div class="text-center mb-4">
+
+                    <i class="fa-solid fa-droplet"
+                       style="font-size: 50px; color: #cc0000;">
+                    </i>
+
+                    <h2 class="fw-bold mt-3">
+                        Add Blood Inventory
+                    </h2>
+
+                    <p class="text-muted">
+                        Add available blood units to LifeFlow.
+                    </p>
+
+                </div>
+
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+
+                    <!-- BLOOD GROUP -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Blood Group
+                        </label>
+
+                        <select name="blood_group"
+                                class="form-select"
+                                required>
+
+                            <option value="">
+                                Select Blood Group
+                            </option>
+
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- UNITS -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+                            Available Blood Units
+                        </label>
+
+                        <input type="number"
+                               name="units"
+                               class="form-control"
+                               min="0"
+                               placeholder="Enter available units"
+                               required>
+
+                    </div>
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="d-flex gap-2">
+
+                        <a href="{% url 'inventory_list' %}"
+                           class="btn btn-secondary w-50">
+
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Cancel
+
+                        </a>
+
+
+                        <button type="submit"
+                                class="btn btn-blood w-50">
+
+                            <i class="fa-solid fa-plus"></i>
+                            Add Inventory
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
