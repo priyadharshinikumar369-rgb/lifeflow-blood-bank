@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-5eupnu#_3owp1&ruo2*f=*6+bewmo6d=3am4fc9c@7-^ilr%t1
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['lifeflow-blood-bank-16.onrender.com']
+ALLOWED_HOSTS = ['lifeflow-blood-bank-17.onrender.com']
 
 # ================= APPLICATIONS =================
 
